@@ -1,0 +1,49 @@
+<?php
+if (!isset($_SESSION))
+{
+	session_start();
+}
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<Title>Generic Fruit Co. - Eat more fruit</Title>
+	<link rel="stylesheet" href="includes/stylesheet.css" type="text/css" media="screen" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+<body>
+	<div id = "html">
+	<div id = "container">
+	<div id = "header">
+		<img src = "images\rsz_2mixed-fruits.jpg" alt = "Assorted fruits"/>
+		<h1>Generic Fruit Co.</h1>
+		<h2>Eat More Fruit</h2>
+		<h3><?php
+			if (isset($_SESSION['customerId']) && (!strpos($_SERVER['PHP_SELF'], 'signOut.php')))
+			{
+				echo "<p>Welcome, {$_SESSION['firstName']}!</p>";
+			}
+			?>
+		</h3>
+	</div>
+	</div>
+	<div id = "navigation">
+	<ul>
+		<li><a href = "index.php">Home</a></li>
+		<li><?php
+		if ((isset($_SESSION['customerId']))  && (!strpos($_SERVER['PHP_SELF'], 'signOut.php'))) 
+		{
+			echo '<a href="signOut.php">Sign Out</a>';
+		} 
+		else 
+		{
+			echo '<a href="signIn.php">Sign In</a>';
+		}?></li>
+		<li><a href = "signUp.php">Register</a></li>
+		<li><a href = "products.php">Products</a></li>
+		<li><a href = "viewCart.php">View Cart</a></li>
+		<li><a href = "contact.php">Contact</a></li>
+	</ul>
+	</div>
+	</div>
